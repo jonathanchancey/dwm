@@ -33,3 +33,5 @@
 
 # Extras
 *.rej
+potential-patches/
+titus-patches/
