@@ -70,6 +70,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
+static const char *voltcmd[]  = { "pactl", "set-default-sink", "alsa_output.usb-Universal_Audio_Volt_476_22142040012320-00.analog-surround-40", NULL };
+static const char *t9procmd[]  = { "pactl", "set-default-sink", "alsa_output.usb-Feixiang_USB_HIFI_Audio-01.analog-stereo", NULL };
+static const char *hyperxcmd[]  = { "pactl", "set-default-sink", "alsa_output.usb-Kingston_HyperX_Cloud_II_Wireless_000000000001-00.analog-stereo", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -77,6 +80,9 @@ static const Key keys[] = {
 	{ MODKEY,		                  	XK_space,	 spawn,          SHCMD("rofi -show drun") },
 	{ MODKEY|ShiftMask,	           	XK_c,   	 spawn,          SHCMD("$HOME/scripts/compile-dwm.sh") },
 	{ MODKEY|ShiftMask,	           	XK_s,   	 spawn,          SHCMD("flameshot gui") },
+	{ MODKEY|ControlMask,          	XK_m,   	 spawn,          {.v = voltcmd } },
+	{ MODKEY|ControlMask,          	XK_comma,  spawn,          {.v = t9procmd } },
+	{ MODKEY|ControlMask,          	XK_period, spawn,          {.v = hyperxcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
