@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -16,9 +17,9 @@ static const Bool viewontag         = True;     /* Switch view on tag switch */
 // static const char *fonts[]          = { "MesloLGS Nerd Font Mono:size=16" };
 // static const char dmenufont[]       = "MesloLGS Nerd Font Mono:size=16";
 static const char *fonts[]          = { "FiraMono Nerd Font:size=12" };
-static const char dmenufont[]       = "FiraMono Nerd Font:size=12"
-static unsigned int baralpha        = 0xd0;
-static unsigned int borderalpha     = OPAQUE;
+static const char dmenufont[]       = "FiraMono Nerd Font:size=12";
+// static unsigned int baralpha        = 0xd0;
+// static unsigned int borderalpha     = OPAQUE;
 // static const char col_gray1[]       = "#2E3440";
 // static const char col_gray2[]       = "#3B4252";
 // static const char col_gray3[]       = "#D8DEE9";
@@ -88,14 +89,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-// #define STACKKEYS(MOD,ACTION) \
-// 	{ MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
-// 	{ MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
-// 	{ MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \
-// 	{ MOD, XK_q,     ACTION##stack, {.i = 0 } }, \
-// 	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \
-// 	{ MOD, XK_z,     ACTION##stack, {.i = 2 } }, \
-// 	{ MOD, XK_x,     ACTION##stack, {.i = -1 } },
+
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -116,6 +110,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 static const char *voltcmd[]  = { "pactl", "set-default-sink", "alsa_output.usb-Universal_Audio_Volt_476_22142040012320-00.analog-surround-40", NULL };
 static const char *t9procmd[] = { "pactl", "set-default-sink", "alsa_output.usb-Feixiang_USB_HIFI_Audio-01.analog-stereo", NULL };
+static const char *hyperxcmd[] = { "pactl", "set-default-sink", "alsa_output.usb-Kingston_HyperX_Cloud_II_Wireless_000000000001-00.analog-stereo", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
