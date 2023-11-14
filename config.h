@@ -42,15 +42,14 @@ static const char *const autostart[] = {
   // "xset", "s", "noblank", NULL,
   // "xset", "-dkms", NULL,
   // "dbus-update-activation-environment", "--systemd", "--all", NULL,
-  "flameshot", NULL,
-  "lxpolkit", NULL,
-  "dunst", NULL,
-  "picom", NULL,
+  // "flameshot", NULL,
+  // "lxpolkit", NULL,
+  // "dunst", NULL,
+  // "picom", NULL,
   // "sh", "-c", "$HOME/github/dwm-titus/scripts/status", NULL,
   // "feh", "--bg-max", "$HOME/Pictures/background.jpg", NULL,
   NULL /* terminate */
 };
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
