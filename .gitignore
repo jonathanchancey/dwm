@@ -36,3 +36,4 @@
 potential-patches/
 titus-patches/
 pretitus-patches/
+*.log
