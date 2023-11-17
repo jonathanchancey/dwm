@@ -283,11 +283,6 @@ static const char *dmenucmd[] = {
 /* This defines the name of the executable that handles the bar (used for signalling purposes) */
 #define STATUSBAR "dwmblocks"
 
-
-/* AidenThing suggests using this general solution for dynamically changing outputs. */
-static const char *upvol[] =   { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *update_sb_volume[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 
 /* commands */
