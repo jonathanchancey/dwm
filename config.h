@@ -2,6 +2,9 @@
 
 #include <X11/XF86keysym.h>
 
+#define CURRENT_TERMINAL "kitty"
+#define BROWSER "flatpak run com.brave.Browser"
+
 /* appearance */
 #if ROUNDED_CORNERS_PATCH
 static const unsigned int borderpx       = 0;   /* border pixel of windows */
@@ -165,7 +168,8 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 static const char font[]                 = "monospace 10";
 #else
 // static const char *fonts[]               = { "monospace:size=10" };
-static const char *fonts[]          = { "FiraMono Nerd Font:size=12" };
+static const char *fonts[]          = { "FiraMono Nerd Font:size=12", "fontAwesome:size=14" };
+// static const char *fonts[]          = { "FantasqueSansMono:style=bold:size=12", "JoyPixels:pixelsize=14", "siji:pixelsize=14", "fontAwesome:size=14" };
 #endif // BAR_PANGO_PATCH
 // static const char dmenufont[]            = "monospace:size=10";
 static const char dmenufont[]       = "FiraMono Nerd Font:size=12";
@@ -903,6 +907,7 @@ static const Key on_empty_keys[] = {
 static const char *upvol[] =   { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *update_sb_volume[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 
 /* commands */
 static const char *termcmd[]  = { "kitty", NULL };
@@ -918,7 +923,8 @@ static const Key keys[] = {
   { MODKEY|ControlMask,          	XK_m,   	     spawn,                  {.v = voltcmd } },
 	{ MODKEY|ControlMask,          	XK_comma,      spawn,                  {.v = t9procmd } },
 	{ MODKEY|ControlMask,          	XK_period,     spawn,                  {.v = hyperxcmd } },
-	{ MODKEY|ShiftMask,             XK_r,          quit,                   {0} },
+	// { MODKEY|ShiftMask,             XK_r,          quit,                   {0} },
+	{ MODKEY|ShiftMask,	           	XK_c,        	 spawn,                  SHCMD("compile-dwm.fish") },
 	{ MODKEY|ShiftMask,             XK_q,          spawn,                  {.v = killcmd } },
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
@@ -1079,7 +1085,7 @@ static const Key keys[] = {
 	#endif // SELFRESTART_PATCH
 	{ MODKEY|ShiftMask,             XK_q,          quit,                   {0} },
 	#if RESTARTSIG_PATCH
-	{ MODKEY|ControlMask|ShiftMask, XK_q,          quit,                   {1} },
+	{ MODKEY|ShiftMask,             XK_r,          quit,                   {1} },
 	#endif // RESTARTSIG_PATCH
 	#if FOCUSURGENT_PATCH
 	{ MODKEY,                       XK_u,          focusurgent,            {0} },
@@ -1145,7 +1151,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f,          fullscreen,             {0} },
 	#endif // FULLSCREEN_PATCH
 	#if STICKY_PATCH
-	{ MODKEY|ShiftMask,             XK_s,          togglesticky,           {0} },
+	{ MODKEY|ControlMask,           XK_s,          togglesticky,           {0} },
 	#endif // STICKY_PATCH
 	#if SCRATCHPAD_ALT_1_PATCH
 	{ MODKEY,                       XK_minus,      scratchpad_show,        {0} },
@@ -1318,7 +1324,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                                  6)
 	TAGKEYS(                        XK_8,                                  7)
 	TAGKEYS(                        XK_9,                                  8)
-	{ MODKEY|ShiftMask,             XK_r,          quit,                  {0} },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = update_sb_volume } },
+	{ 0,                            XF86XK_AudioMute, spawn,        {.v = update_sb_volume } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = update_sb_volume } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                            XF86XK_AudioMute, spawn,        {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
