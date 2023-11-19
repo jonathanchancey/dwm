@@ -394,7 +394,6 @@ static void zoom(const Arg *arg);
 /* variables */
 static const char broken[] = "broken";
 static char stext[512];
-static char rawstext[512];
 
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
@@ -2652,10 +2651,8 @@ void
 updatestatus(void)
 {
 	Monitor *m;
-	if (!gettextprop(root, XA_WM_NAME, rawstext, sizeof(rawstext)))
+	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
 		strcpy(stext, "dwm-"VERSION);
-	else
-		copyvalidchars(stext, rawstext);
 	for (m = mons; m; m = m->next)
 		drawbar(m);
 }
